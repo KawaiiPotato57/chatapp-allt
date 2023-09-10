@@ -1,0 +1,469 @@
+{
+  "users": [
+    {
+      "userId": 1,
+      "userMobileNo": "123",
+      "userName": "John",
+      "isOnlineUser": true,
+      "newMsgCount": 3,
+      "averageResponseTime": 10
+    },
+    {
+      "userId": 2,
+      "userMobileNo": "456",
+      "userName": "Elton",
+      "isOnlineUser": true,
+      "newMsgCount": 0,
+      "averageResponseTime": 21
+    },
+    {
+      "userId": 3,
+      "userMobileNo": "7890",
+      "userName": "Kawaii",
+      "isOnlineUser": false,
+      "newMsgCount": 1,
+      "averageResponseTime": 10
+    }
+  ],
+  "messages": [
+    {
+      "chatId": 1,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-07T21:24:02.3400791",
+      "isNew": true,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "Hello there!"
+    },
+    {
+      "chatId": 2,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": true,
+      "isSendMsg": false,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 3,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": true,
+      "isSendMsg": false,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 4,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 5,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": true,
+      "isSendMsg": false,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 6,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 7,
+      "senderId": 0,
+      "receiverId": 2,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": true,
+      "isSendMsg": false,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 8,
+      "senderId": 0,
+      "receiverId": 2,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": true,
+      "isSendMsg": false,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 9,
+      "senderId": 0,
+      "receiverId": 2,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 10,
+      "senderId": 0,
+      "receiverId": 3,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 11,
+      "senderId": 0,
+      "receiverId": 3,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": true,
+      "isSendMsg": false,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "chatId": 12,
+      "senderId": 0,
+      "receiverId": 3,
+      "dateTime": "2023-09-07T21:25:02.3400791",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "Hi, how are you?"
+    },
+    {
+      "id": 987,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:18:13.713Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "olala?"
+    },
+    {
+      "id": 980.0864880652443,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:20:06.826Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "baka"
+    },
+    {
+      "id": 784.498881865205,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:21:08.560Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "desu"
+    },
+    {
+      "id": 71.59108406418912,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:30:20.845Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "aoun off "
+    },
+    {
+      "id": 432.23868130941634,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:31:20.155Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "off aoun"
+    },
+    {
+      "id": 781.881706269805,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:32:04.716Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "off?"
+    },
+    {
+      "id": 926.7395318719155,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:33:27.258Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "noooooooooooo"
+    },
+    {
+      "id": 477.21902805585813,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:37:55.698Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "kawaii"
+    },
+    {
+      "id": 653.3782022053525,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:44:06.593Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "let go"
+    },
+    {
+      "id": 63.021341145047536,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:45:38.019Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "fiona"
+    },
+    {
+      "id": 911.3474209450619,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:46:07.115Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "baka dayoo"
+    },
+    {
+      "id": 801.6115878408617,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:50:18.826Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "daman"
+    },
+    {
+      "id": 614.979442817613,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:52:06.080Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "nope"
+    },
+    {
+      "id": 330.7011942412791,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:54:17.140Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "vopo"
+    },
+    {
+      "id": 979.991313931177,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:56:43.953Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "321"
+    },
+    {
+      "id": 763.1158992104528,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T09:59:56.019Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "111"
+    },
+    {
+      "id": 55.05925886875174,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:00:05.730Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "2122"
+    },
+    {
+      "id": 274.3752939461627,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:06:51.540Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "jolo"
+    },
+    {
+      "id": 171.7347615952074,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:13:24.540Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "3221"
+    },
+    {
+      "id": 891.1587312823573,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:13:45.707Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "112222"
+    },
+    {
+      "id": 688.1470325255616,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:48:54.085Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "213"
+    },
+    {
+      "id": 352.8386890833227,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:51:05.678Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "258"
+    },
+    {
+      "id": 923.6621212959143,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:53:19.398Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "11111"
+    },
+    {
+      "id": 748.490246828799,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T10:56:46.550Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "369"
+    },
+    {
+      "id": 351.5620920237942,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T12:41:30.395Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "violin"
+    },
+    {
+      "id": 563.3554554322599,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T12:41:41.695Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "no violin?"
+    },
+    {
+      "id": 847.1082069046606,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-08T12:41:56.754Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "prove"
+    },
+    {
+      "id": 576.5212493219301,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-10T11:30:31.765Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "jon bovi"
+    },
+    {
+      "id": 373.99952712526385,
+      "chatId": 31,
+      "senderId": 0,
+      "receiverId": 1,
+      "dateTime": "2023-09-10T11:30:41.747Z",
+      "isNew": false,
+      "isReveiveMsg": false,
+      "isSendMsg": true,
+      "msg": "greg jr"
+    }
+  ]
+}
