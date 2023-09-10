@@ -12,10 +12,17 @@
       </div>
       <div class="contactDetails">
         <div class="contactName">{{ contact.userMobileNo }}</div>
-        <div class="lastMessage">{{ contact.lastMessage || 'Danse' }}</div>
+        <div class="lastMessage">
+          {{ recentMessages[contact.userId].lastMessage || 'Danse' }}
+        </div>
       </div>
       <div class="latestDiv">
-        <div class="messageTime">{{ contact.dateTime || '12:01 pm' }}</div>
+        <div class="countClass" v-if="recentMessages[contact.userId].count > 0">
+          {{ recentMessages[contact.userId].count }}
+        </div>
+        <div class="messageTime">
+          {{ recentMessages[contact.userId].dateTime || '12:01 pm' }}
+        </div>
       </div>
     </div>
   </div>
@@ -44,7 +51,9 @@ interface User {
 const contactList = computed(() => store.state.userList);
 const randomContacts = ref<User[]>([]);
 const contactsCheck = ref(true); // Assume true initially until data is fetched
-
+const recentChats = computed(() => store.state.recentMessage);
+const setRecents = ref();
+console.log('In the cards', setRecents.value);
 watch(
   () => store.state.userList,
   (newVal) => {
@@ -53,6 +62,24 @@ watch(
   }
 );
 
+watch(
+  () => recentChats.value,
+  (newVal) => {
+    setRecents.value = newVal;
+    console.log('ONE?', recentChats.value[1]);
+  },
+  {
+    immediate: true
+  }
+);
+
+const recentMessages = computed(() => {
+  const recentMessagesMap: any = {};
+  for (const recentChat of recentChats.value) {
+    recentMessagesMap[recentChat.userId] = recentChat;
+  }
+  return recentMessagesMap;
+});
 const handleCardClick = (user: User) => {
   // currentReceiverId.value = userId;
   // fetchChats(userId);
@@ -91,7 +118,18 @@ onMounted(() => {
 .chatBar::-webkit-scrollbar-track {
   background: lightgrey; /* Color of the track */
 }
-
+.countClass {
+  border-radius: 50%;
+  color: white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 72, 90);
+  font-size: 15px;
+  position: relative;
+}
 .contactCard {
   position: relative;
   display: flex;
@@ -116,17 +154,7 @@ onMounted(() => {
   height: 1px;
   background-color: rgb(72, 72, 72);
 }
-.countClass {
-  font-size: large;
-  border-radius: 50%;
-  color: white;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(0, 72, 90);
-}
+
 .contactImage {
   border-radius: 50%;
   width: 50px;

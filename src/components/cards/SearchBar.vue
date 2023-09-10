@@ -13,8 +13,8 @@
       <button
         class="searchButton"
         :icon="Search"
-        @click="handleIconClick"
-        @keyup.enter="handleIconClick"
+        @click="recieveMessage"
+        @keyup.enter="recieveMessage"
       >
         Search
       </button>
@@ -27,23 +27,47 @@
 </template>
 
 <script setup lang="ts">
-import ContactCards from './ContactCards.vue'
-import { ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
+import ContactCards from './ContactCards.vue';
+import { ref } from 'vue';
+import { Search } from '@element-plus/icons-vue';
+import { useStore } from 'vuex';
+const store = useStore();
 //   import { useStore } from 'vuex';
 //   const store = useStore();
 
-const state = ref('')
-const showError = ref(false)
-const isValue = ref(false)
+const state = ref('');
+const showError = ref(false);
+const isValue = ref(false);
 const changeCards = () => {
   if (state.value == '' || state.value == null || state.value == undefined) {
-    isValue.value = false
+    isValue.value = false;
   }
-}
-const handleIconClick = (ev: Event) => {
-  console.log('handleIconClick')
-}
+};
+// const handleIconClick = (ev: Event) => {
+
+// }
+const recieveMessage = () => {
+  if (state.value == '') {
+    state.value = '';
+    return;
+  } else {
+    console.log('THE ID in search:');
+    const payload = {
+      id: Math.random() * 1000,
+      chatId: 31,
+      senderId: 1,
+      receiverId: 0,
+      dateTime: new Date().toISOString(),
+      isNew: false,
+      isReveiveMsg: true,
+      isSendMsg: false,
+      msg: state.value
+    };
+    store.dispatch('recieveMessage', payload);
+  }
+
+  state.value = '';
+};
 </script>
 
 <style>

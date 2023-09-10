@@ -112,6 +112,12 @@ const updateChatMessages = (newApiMessages: any, bool = false) => {
   }
   if (bool) {
     console.log('IN UPDATE bool', newApiMessages);
+    const dateTime = new Date(newApiMessages.dateTime);
+    const localDateTime = dateTime.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    newApiMessages.dateTime = localDateTime;
     const newMsg: Message = {
       id: newApiMessages.chatId,
       sender: newApiMessages.isSendMsg ? 'me' : 'them',
@@ -124,12 +130,27 @@ const updateChatMessages = (newApiMessages: any, bool = false) => {
     console.log('IN UPDATE CHAT MESSAGES');
 
     console.log('newApiMessages : ', newApiMessages);
-    const randomChats = newApiMessages.map((apiMsg: ApiMessage) => ({
-      id: apiMsg.chatId,
-      sender: apiMsg.isSendMsg ? 'me' : 'them',
-      content: apiMsg.msg,
-      time: apiMsg.dateTime
-    }));
+
+    // const randomChats = newApiMessages.map((apiMsg: ApiMessage) => ({
+    //   id: apiMsg.chatId,
+    //   sender: apiMsg.isSendMsg ? 'me' : 'them',
+    //   content: apiMsg.msg,
+    //   time: apiMsg.dateTime
+    // }));
+    const randomChats = newApiMessages.map((apiMsg: ApiMessage) => {
+      const dateTime = new Date(apiMsg.dateTime);
+      const localDateTime = dateTime.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      return {
+        id: apiMsg.chatId,
+        sender: apiMsg.isSendMsg ? 'me' : 'them',
+        content: apiMsg.msg,
+        time: localDateTime // Use the formatted dateTime here
+      };
+    });
 
     chatMessages.value = randomChats;
     console.log('The chat messages : ', chatMessages.value);
@@ -192,13 +213,6 @@ const getMessages = () => {
   contactsCheck.value = checkBool.value;
   updateChatMessages(msgs.value[0], false);
 };
-// watch(
-//   () => store.state.chats,
-//   (newVal) => {
-//     console.log('IN WATCH MSGS', newVal[newVal.length]);
-//     updateChatMessages(newVal[newVal.length], true);
-//   }
-// );
 
 watch(
   () => store.state.selectedUser,
@@ -209,12 +223,24 @@ watch(
     }
   }
 );
-// watch(
-//   () => store.state.isSent,
-//   (newUserId) => {
-//     updateChatMessages(store.state.chats[store.state.chats.length - 1], true);
-//   }
-// );
+
+watch(
+  () => store.state.isSent,
+  (bool) => {
+    if (chatArea.value) {
+      console.log(
+        'chatArea.value.scrollTop: ',
+        chatArea.value.scrollTop,
+        'chatArea.value.scrollHeight',
+        chatArea.value.scrollHeight
+      );
+      nextTick(() => {
+        chatArea.value.scrollTop = chatArea.value.scrollHeight;
+      });
+      // Ensure it's scrolled to the bottom
+    }
+  }
+);
 
 watch(
   () => store.state.contactsCheck,
@@ -275,7 +301,7 @@ onUnmounted(() => {
 <style scoped>
 .chatContainer {
   width: 80%;
-  min-height: 100vh;
+  min-height: 80vh;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;

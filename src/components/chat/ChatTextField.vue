@@ -6,6 +6,7 @@
       @keyup.enter="sendMessage"
       placeholder="Type a message"
     />
+    <button @click="recieveMessage">Recieve</button>
     <button @click="sendMessage" class="sendButton">
       <el-icon><Promotion /></el-icon>
     </button>
@@ -37,6 +38,28 @@ const sendMessage = () => {
       msg: newMessage.value
     };
     store.dispatch('sendMessage', payload);
+  }
+
+  newMessage.value = '';
+};
+const recieveMessage = () => {
+  if (newMessage.value == '') {
+    newMessage.value = '';
+    return;
+  } else {
+    console.log('THE ID in search:');
+    const payload = {
+      id: Math.random() * 1000,
+      chatId: 31,
+      senderId: 1,
+      receiverId: 0,
+      dateTime: new Date().toISOString(),
+      isNew: false,
+      isReveiveMsg: true,
+      isSendMsg: false,
+      msg: newMessage.value
+    };
+    store.dispatch('recieveMessage', payload);
   }
 
   newMessage.value = '';
