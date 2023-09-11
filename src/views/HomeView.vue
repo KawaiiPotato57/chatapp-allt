@@ -1,58 +1,70 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { ChatRound, SwitchButton } from '@element-plus/icons-vue'
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
+import { ChatRound, SwitchButton } from '@element-plus/icons-vue';
 import CardsContainer from '../components/cards/CardsContainer.vue';
-import ChatContainer from '../components/chat/ChatContainer.vue'
-import chatIcon from '@/assets/chatIcon.png'
-// import { useStore } from 'vuex';
-import { useRouter } from 'vue-router'
-const router = useRouter()
-// const store = useStore();
+import ChatContainer from '../components/chat/ChatContainer.vue';
+import chatIcon from '@/assets/chatIcon.png';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const store = useStore();
 // const userSelected = computed(() => store.state.userSelected);
-const isCollapse = ref(true)
-const showAboutView = ref(true)
-const showChatContainer = ref(true)
+const isCollapse = ref(true);
+// const showAboutView = ref(true);
+// const showChatContainer = ref(true);
+
+const showAboutView = computed(() => store.state.showAboutView);
+const showChatContainer = computed(() => store.state.showChatContainer);
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+  console.log(key, keyPath);
+};
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+  console.log(key, keyPath);
+};
 
 const toggleCollapse = () => {
-  isCollapse.value = !isCollapse.value
-}
+  isCollapse.value = !isCollapse.value;
+};
+
 const handleResize = () => {
   if (window.innerWidth <= 1100) {
-    showAboutView.value = false
-    showChatContainer.value = true
+    store.commit('setAboutView', false);
+    store.commit('setChatContainer', true);
+    // showAboutView.value = false;
+    // showChatContainer.value = true;
   } else {
-    showAboutView.value = true
-    showChatContainer.value = true
+    store.commit('setAboutView', true);
+    store.commit('setChatContainer', true);
+    // showAboutView.value = true;
+    // showChatContainer.value = true;
   }
-}
+};
 const toggleAboutView = () => {
   if (window.innerWidth <= 1100) {
-    showAboutView.value = !showAboutView.value
-    showChatContainer.value = !showAboutView.value
+    store.commit('setAboutView', !store.state.showAboutView);
+    store.commit('setChatContainer', !store.state.showAboutView);
+
+    // showAboutView.value = !showAboutView.value;
+    // showChatContainer.value = !showAboutView.value;
   } else {
-    showAboutView.value = !showAboutView.value
+    // showAboutView.value = !showAboutView.value;
+    store.commit('setAboutView', !store.state.showAboutView);
   }
-}
+};
 const logoutUser = () => {
   // store.dispatch('removeConnectionId').then(() => {
   //   router.push('/signin');
   // });
-}
+};
 
 onMounted(() => {
-  window.addEventListener('resize', handleResize)
-  handleResize() // Call it once during mounted to set initial state
-})
+  window.addEventListener('resize', handleResize);
+  handleResize(); // Call it once during mounted to set initial state
+});
 
 onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
-})
+  window.removeEventListener('resize', handleResize);
+});
 </script>
 
 <template>
@@ -90,9 +102,9 @@ onUnmounted(() => {
     </div>
     <!-- <ContactsView v-if="showAboutView" /> -->
     <!-- <ChatContainer v-if="showChatContainer" />  -->
-    <CardsContainer />
+    <CardsContainer v-if="showAboutView" />
 
-    <ChatContainer />
+    <ChatContainer v-if="showChatContainer" />
   </div>
 </template>
 

@@ -12,15 +12,26 @@
       </div>
       <div class="contactDetails">
         <div class="contactName">{{ contact.userMobileNo }}</div>
-        <div class="lastMessage">
+        <div class="lastMessage" v-if="recentMessages[contact.userId] === undefined">
+          {{ 'Danse' }}
+        </div>
+        <div class="lastMessage" v-else>
           {{ recentMessages[contact.userId].lastMessage || 'Danse' }}
         </div>
       </div>
       <div class="latestDiv">
-        <div class="countClass" v-if="recentMessages[contact.userId].count > 0">
+        <div
+          class="countClass"
+          v-if="recentMessages[contact.userId] && recentMessages[contact.userId].count > 0"
+        >
           {{ recentMessages[contact.userId].count }}
         </div>
-        <div class="messageTime">
+        <div
+          class="messageTime"
+          v-if="
+            recentMessages[contact.userId] && recentMessages[contact.userId].dateTime !== undefined
+          "
+        >
           {{ recentMessages[contact.userId].dateTime || '12:01 pm' }}
         </div>
       </div>
@@ -86,6 +97,10 @@ const handleCardClick = (user: User) => {
   store.commit('setActiveUser', user);
   console.log('clicked Card');
   store.dispatch('fetchChats', false);
+  if (window.innerWidth <= 1100) {
+    store.commit('setAboutView', !store.state.showAboutView);
+    store.commit('setChatContainer', true);
+  }
 };
 // Fetch data when the component is mounted
 onMounted(() => {

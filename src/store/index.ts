@@ -35,6 +35,8 @@ type ChatState = {
   isSent: boolean;
   recentMessage: recent[];
   allChats: chatMessage[];
+  showAboutView: boolean;
+  showChatContainer: boolean;
 };
 
 const state: ChatState = {
@@ -47,17 +49,26 @@ const state: ChatState = {
   offset: 0,
   isSent: false,
   recentMessage: [],
-  allChats: []
+  allChats: [],
+  showAboutView: true,
+  showChatContainer: true
 };
 export default createStore({
   state,
   mutations: {
+    setAboutView(state, value: boolean) {
+      state.showAboutView = value;
+    },
+    setChatContainer(state, value: boolean) {
+      state.showChatContainer = value;
+    },
     setUserList(state, payload) {
       state.userList = payload;
     },
     setActiveUser(state, payload) {
       state.chats = [];
       state.selectedUser = payload;
+      console.log('user changed', state.selectedUser);
       state.offset = 0;
       state.getRecords = 10;
       console.log('state.selectedUser', state.selectedUser);

@@ -71,6 +71,7 @@ const chatArea = ref<HTMLElement | null>(null);
 const chatMessages = ref<Message[]>([]);
 const computedChats: ComputedRef<ApiMessage[]> = computed(() => store.state.chats);
 const contactsCheckBool: ComputedRef<boolean> = computed(() => store.state.contactsCheck);
+const isMobile = computed(() => window.innerWidth <= 1100);
 
 const generateRandomApiMessages = (num: number): ApiMessage[] => {
   const messages: ApiMessage[] = [];
@@ -137,23 +138,24 @@ const updateChatMessages = (newApiMessages: any, bool = false) => {
     //   content: apiMsg.msg,
     //   time: apiMsg.dateTime
     // }));
-    const randomChats = newApiMessages.map((apiMsg: ApiMessage) => {
-      const dateTime = new Date(apiMsg.dateTime);
-      const localDateTime = dateTime.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit'
+    if (newApiMessages && Array.isArray(newApiMessages)) {
+      const randomChats = newApiMessages.map((apiMsg: ApiMessage) => {
+        const dateTime = new Date(apiMsg.dateTime);
+        const localDateTime = dateTime.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        return {
+          id: apiMsg.chatId,
+          sender: apiMsg.isSendMsg ? 'me' : 'them',
+          content: apiMsg.msg,
+          time: localDateTime // Use the formatted dateTime here
+        };
       });
-
-      return {
-        id: apiMsg.chatId,
-        sender: apiMsg.isSendMsg ? 'me' : 'them',
-        content: apiMsg.msg,
-        time: localDateTime // Use the formatted dateTime here
-      };
-    });
-
-    chatMessages.value = randomChats;
-    console.log('The chat messages : ', chatMessages.value);
+      chatMessages.value = randomChats;
+      console.log('The chat messages : ', chatMessages.value);
+    }
   }
   nextTick(() => {
     if (chatArea.value) {
@@ -199,8 +201,15 @@ const loadMoreMessages = () => {
 const handleScroll = (e: Event) => {
   console.log('IN HANDLE SCROLL');
   const target = e.target as HTMLElement;
-  // Change 500000 to the scroll position at which you want to trigger the function
-  // console.log('The target : ', target.scrollTop, 'CHAT AREA', chatArea.value?.scrollHeight);
+  const scrollOffset = 10;
+  if (isMobile.value) {
+    // Only auto-scroll in mobile view
+    if (target.scrollTop + target.clientHeight + scrollOffset >= target.scrollHeight) {
+      // User is at or near the bottom of the chat
+      // Scroll to the very bottom
+      target.scrollTop = target.scrollHeight;
+    }
+  }
   if (target.scrollTop == 0) {
     // console.log('IN LOAD BEFORE');
     loadMoreMessages();
@@ -208,20 +217,25 @@ const handleScroll = (e: Event) => {
 };
 const msgs = computed(() => store.state.chats);
 const checkBool = computed(() => store.state.contactsCheck);
+console.log('BOOL 3', checkBool.value);
 
 const getMessages = () => {
   contactsCheck.value = checkBool.value;
-  updateChatMessages(msgs.value[0], false);
+  console.log('BOOL 2', contactsCheck.value);
+  console.log('IN GET MESSAGES', msgs.value[0]);
+  updateChatMessages(msgs.value, false);
 };
 
 watch(
   () => store.state.selectedUser,
   (newUserId, oldUserId) => {
     if (newUserId !== oldUserId) {
-      chatMessages.value = [];
+      console.log('USER CHANGEDD???');
+
       getMessages();
     }
-  }
+  },
+  { immediate: true, deep: true }
 );
 
 watch(
@@ -246,7 +260,9 @@ watch(
   () => store.state.contactsCheck,
   (bool) => {
     contactsCheck.value = bool;
-  }
+    console.log('BOOL 1', contactsCheck.value);
+  },
+  { immediate: true, deep: true }
 );
 const computedLength = ref(0);
 watch(
@@ -267,8 +283,7 @@ watch(
     } else {
       console.log('ERROR');
     }
-  },
-  { deep: true }
+  }
 );
 
 watch(
@@ -285,9 +300,12 @@ watch(
       console.log('IN WATCH EFFECT');
       chatArea.value.addEventListener('scroll', handleScroll);
       chatArea.value.scrollTop = chatArea.value.scrollHeight;
-      // chatArea.value.scrollTop = 540;
+      if (isMobile.value) {
+        chatArea.value.scrollTop = chatArea.value.scrollHeight;
+      }
     }
-  }
+  },
+  { immediate: true, deep: true }
 );
 
 onUnmounted(() => {
